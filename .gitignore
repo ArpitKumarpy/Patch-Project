@@ -169,3 +169,57 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# --- Node.js (Next.js) ---
+node_modules/
+.next/
+out/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# --- Python (Flask/FastAPI) ---
+__pycache__/
+*.py[cod]
+venv/
+env/
+*.egg-info/
+*.log
+instance/
+.mypy_cache/
+pytest_cache/
+
+# --- Database (PostgreSQL) ---
+*.sqlite3
+*.db
+pgdata/
+dump.sql
+
+# --- Environment & Config Files ---
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+config.json
+secrets.json
+
+# --- Socket.io & WebSockets ---
+socket_logs/
+
+# --- Payment API Keys (Stripe, Razorpay) ---
+stripe_keys.json
+razorpay_keys.json
+
+# --- Frontend & Backend Build Files ---
+dist/
+build/
+cache/
+
+# --- VSCode & JetBrains IDEs ---
+.vscode/
+.idea/
+*.iml
