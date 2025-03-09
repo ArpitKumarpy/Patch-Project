@@ -1,18 +1,26 @@
 # backend/main.py
-from fastapi import FastAPI, Depends, HTTPException, status
-from fastapi.middleware.cors import CORSMiddleware
+# At the top of your main.py file, update imports:
+from fastapi import FastAPI, Depends, HTTPException, status, UploadFile, File, Form
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
-from typing import List, Optional
 from datetime import datetime, timedelta
-from jose import JWTError, jwt
-from passlib.context import CryptContext
+from typing import List, Optional
+import jwt
 import os
+from passlib.context import CryptContext
+from fastapi.responses import JSONResponse
+import shutil
+from uuid import uuid4
 from dotenv import load_dotenv
+from db import models  # Ensure this is present
+from db.database import engine
 
+
+# Database imports
 from db.database import get_db, engine
-from db import models, schemas
-
+from db.models import Base, User, Post, Project
+from db.schemas import UserCreate, PostCreate, Token
 # Load environment variables
 load_dotenv()
 
@@ -24,7 +32,7 @@ app = FastAPI(title="Patch-Project API")
 # Set up CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Frontend URL
+    allow_origins=["http://localhost:5432"],  # Frontend URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
