@@ -1,0 +1,17 @@
+name: Deploy Flask/FastAPI to Render
+
+on:
+  push:
+    branches:
+      - main  # Runs when you push to main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Deploy to Render
+        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
