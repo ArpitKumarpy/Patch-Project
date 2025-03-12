@@ -1,6 +1,6 @@
 # backend/main.py
 # At the top of your main.py file, update imports:
-from fastapi import FastAPI, Depends, HTTPException, status, UploadFile, File, Form
+from fastapi import FastAPI, Depends, HTTPException, status, UploadFile
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
@@ -15,7 +15,7 @@ from uuid import uuid4
 from dotenv import load_dotenv
 from db import models  # Ensure this is present
 from db.database import engine
-
+from db import schemas
 
 # Database imports
 from db.database import get_db, engine
